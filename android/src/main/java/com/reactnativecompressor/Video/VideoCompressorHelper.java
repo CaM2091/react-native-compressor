@@ -122,7 +122,9 @@ public class VideoCompressorHelper {
         case "minimumFileSizeForCompress":
           options.minimumFileSizeForCompress =(float) map.getDouble(key);
           break;
-
+        case "bitrate":
+          options.bitrate = (float) map.getDouble(key);
+          break;
       }
     }
     return options;
@@ -149,7 +151,7 @@ public class VideoCompressorHelper {
       int bitrate=Integer.parseInt(metaRetriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_BITRATE));
 
       boolean isPortrait = height > width;
-      int maxSize = 1920;
+      int maxSize = (int) options.maxSize;
       if(isPortrait && height > maxSize){
         width = (int) (((float)maxSize/height)*width);
         height = maxSize;
